@@ -1,0 +1,35 @@
+App
+    .stage
+    .chatInputField
+    .voteStartButton
+
+Stage
+    .players
+    .cemetery // あまり二枚のカード置き場
+
+
+Card
+    .open
+    .role
+    .image
+    .ability()
+
+    Villager
+    Werewolf
+    Teller
+    Thief
+    (size 44x63)
+
+Player
+    .name // ハンドルネーム
+    .card // 役職など
+    .ballot // 投票先
+    .chatballoon // チャットの吹き出し
+
+GameMaster
+    .clock
+    .progress
+    .aggregate()
+
+
+
