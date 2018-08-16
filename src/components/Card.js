@@ -3,12 +3,16 @@ import React from 'react';
 import { withStyles } from '@material-ui/core/styles'
 import Paper from '@material-ui/core/Paper'
 
+import GameMaster from '../containers/GameMaster'
+
 const styles = theme => ({
   root: {
     flexGrow: 1,
-    position: 'absolute',
+    position: 'relative',
     width: 63 * 2,
     height: 89 * 2,
+    display: 'inline-block',
+    margin: 5,
   },
 })
 
@@ -18,23 +22,37 @@ class Card extends React.Component {
 
     this.state = {
       visible: false,
-      role: 0,
+      role: '村人',
+      front: <div>村人</div>,
+      back: <div>*</div>,
     }
   }
 
-  onClick = event => {
-    console.log('click')
+  actionDraw = () => {
+    const back = <div>tetetetetest</div>
+    this.setState({ back })
+  }
+
+  actionReverse = () => {
+    this.setState((prevState) => {
+      const visible = !prevState.visible
+      return { visible }
+    })
   }
 
   render() {
-    const { classes } = this.props
+    const { classes, action } = this.props
+    const { visible, front, back } = this.state
 
     return (
       <Paper
         className={classes.root}
-        onClick={this.onClick}
+        onClick={action}
       >
-        人狼
+        {visible
+          ? front
+          : back
+        }
       </Paper>
     )
   }

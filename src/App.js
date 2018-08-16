@@ -3,7 +3,6 @@ import React, { Fragment } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 
 import MainBoard from './components/MainBoard'
-import GameMaster from './containers/GameMaster'
 import Login from './components/Login'
 
 class App extends React.Component {

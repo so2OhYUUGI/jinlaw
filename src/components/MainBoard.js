@@ -4,9 +4,11 @@ import { withStyles } from '@material-ui/core/styles'
 import Paper from '@material-ui/core/Paper'
 import TextField from '@material-ui/core/TextField'
 
-import PlayBoard from './PlayBoard'
 import Clock from './Clock'
 import GameMaster from '../containers/GameMaster'
+import player from '../containers/Player'
+import BoardGameInit from './BoardGameInit'
+import BoardGamePlaying from './BoardGamePlaying'
 
 const styles = theme => ({
   root: {
@@ -16,11 +18,6 @@ const styles = theme => ({
     minHeight: 620,
     height: '100vh',
     margin: 'auto',
-  },
-  playboard: {
-    minWidth: 800,
-    minHeight: `calc(100% - 60px)`,
-    backgroundColor: 'green',
   },
   clock: {
     flexGrow: 1,
@@ -71,22 +68,30 @@ class MainBoard extends React.Component {
 
     const { name } = this.props
 
-    GameMaster.addPlayer(name)
+    player.setName(name)
+    GameMaster.init()
+    GameMaster.setProgress = this.setProgress
+
     this.state = {
-      player: name || 'testPlayer'
+      player: player,
+      progress: GameMaster.progress,
     }
+  }
+
+  setProgress = (progress) => {
+    this.setState({ progress })
   }
 
   render() {
     const { classes } = this.props
-    const { player } = this.state
+    const { progress } = this.state
+
+    console.log(progress)
 
     return (
       <Paper className={classes.root}>
-        <PlayBoard
-          className={classes.playboard}
-          player={player}
-        />
+        { progress === 'init' && <BoardGameInit /> }
+        { progress === 'play' && <BoardGamePlaying /> }
         <Clock
           className={classes.clock}
         />
