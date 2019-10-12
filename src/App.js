@@ -1,13 +1,14 @@
 import React from 'react'
 
-import GameTitle from './components/GameTitle'
+import { GameProvider } from 'hooks/useOneNightWarewolf'
+import Game from 'components/Game'
 
 function App() {
   return (
-    <div className="App">
-      <GameTitle />
-    </div>
+    <GameProvider>
+      <Game />
+    </GameProvider>
   );
 }
 
-export default App;
+export default App

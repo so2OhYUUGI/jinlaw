@@ -1,7 +1,8 @@
-import { useState } from 'react'
+import { useContext } from "react";
 
-const useOneNightWerewolf = () => {
-	const [state, setState] = useState({})
+import Context from './Context'
+
+export default () => {
+	const [state, dispatch] = useContext(Context)
+	return [state, dispatch]
 }
-
-export default useOneNightWerewolf
